@@ -211,8 +211,9 @@
   .foot .sig b{color:var(--brand)}
 
   /* ---------- 动画 ---------- */
-  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
+  .reveal{transition:opacity .6s ease,transform .6s ease}
+  .reveal.ini{opacity:0;transform:translateY(14px)}
+  .reveal.ini.in{opacity:1;transform:none}
 
   /* ---------- 响应式 ---------- */
   @media (max-width:900px){
@@ -646,10 +647,8 @@
 <script>
   (function(){
     var els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(function(e){ e.classList.add('in'); });
-      return;
-    }
+    if (!('IntersectionObserver' in window)) return;
+    els.forEach(function(e){ e.classList.add('ini'); });
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if (en.isIntersecting) {
@@ -662,6 +661,10 @@
       e.style.transitionDelay = (Math.min(i % 6, 5) * 55) + 'ms';
       io.observe(e);
     });
+    /* 兜底：无论观察器是否触发，1.2 秒后一律显示 */
+    setTimeout(function(){
+      els.forEach(function(e){ e.classList.add('in'); });
+    }, 1200);
   })();
 </script>
 </body>
