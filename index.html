@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Newsun 英语教学工具 · 教师使用导航</title>
+<meta name="description" content="一线英语教师自建的教学工具清单：备课、听力制作、分级阅读、作文批阅、课堂管理、AI 入门指南，一处找到全部入口。" />
+<meta name="theme-color" content="#2A6049" />
+<style>
+  :root{
+    --ink:#16241E;
+    --ink-2:#41524A;
+    --ink-3:#6C7C73;
+    --line:#DDE5DE;
+    --line-soft:#EAF0EA;
+    --bg:#F5F8F4;
+    --card:#FFFFFF;
+    --brand:#2A6049;
+    --brand-2:#3C7E60;
+    --brand-soft:#EAF2EC;
+    --prep:#1F5B45;
+    --listen:#1E4E79;
+    --study:#9A5518;
+    --read:#6B4A8A;
+    --write:#9E2B25;
+    --ai:#2F5D8C;
+    --admin:#465A64;
+    --shadow:0 1px 2px rgba(22,36,30,.04), 0 8px 24px -12px rgba(22,36,30,.18);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶部导航 ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(245,248,244,.86);
+    backdrop-filter:saturate(180%) blur(12px);
+    -webkit-backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .topbar-in{display:flex;align-items:center;gap:18px;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em;font-size:15px;flex-shrink:0}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}
+  .brand small{font-weight:500;color:var(--ink-3);font-size:12px;letter-spacing:.06em}
+  .nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{
+    font-size:13.5px;color:var(--ink-2);padding:6px 11px;border-radius:999px;
+    white-space:nowrap;transition:.18s;
+  }
+  .nav a:hover{background:var(--brand-soft);color:var(--brand)}
+
+  /* ---------- 首屏 ---------- */
+  .hero{padding:64px 0 44px;position:relative;overflow:hidden}
+  .hero::after{
+    content:"";position:absolute;right:-90px;top:50%;transform:translateY(-50%);
+    width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle at 40% 40%,rgba(60,126,96,.13),rgba(60,126,96,.05) 55%,rgba(60,126,96,0) 72%);
+    filter:blur(6px);
+    pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--brand);background:var(--brand-soft);
+    border:1px solid #D5E4D9;padding:5px 12px;border-radius:999px;font-weight:600;
+  }
+  h1{
+    margin-top:20px;
+    font-size:clamp(30px,4.4vw,46px);
+    line-height:1.24;letter-spacing:-.01em;font-weight:800;
+  }
+  h1 em{
+    font-style:normal;color:var(--brand);
+    background:linear-gradient(180deg,rgba(60,126,96,0) 63%,rgba(60,126,96,.20) 63%);
+    padding:0 3px;border-radius:2px;
+  }
+  .lede{
+    margin-top:18px;max-width:640px;font-size:16.5px;color:var(--ink-2);
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:999px;font-size:15px;font-weight:600;
+    transition:.2s;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 6px 18px -8px rgba(42,96,73,.7)}
+  .btn-primary:hover{background:#23503D;transform:translateY(-1px)}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--ink-2)}
+  .btn-ghost:hover{border-color:var(--brand-2);color:var(--brand)}
+  .stats{display:flex;flex-wrap:wrap;gap:36px;margin-top:40px;padding-top:26px;border-top:1px solid var(--line)}
+  .stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--brand)}
+  .stat span{font-size:13px;color:var(--ink-3)}
+
+  /* ---------- 快速三步 ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:12px}
+  .step{
+    background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow);
+  }
+  .step .n{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--brand-2);margin-bottom:8px}
+  .step h4{font-size:16px;margin-bottom:6px}
+  .step p{font-size:13.5px;color:var(--ink-3);line-height:1.65}
+
+  /* ---------- 分区 ---------- */
+  section{padding-top:56px}
+  .sec-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+  .sec-head h2{font-size:23px;letter-spacing:-.01em;font-weight:800}
+  .sec-head .idx{
+    font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--brand-2);
+    border-left:3px solid var(--brand-2);padding-left:10px;line-height:1.2;margin-bottom:5px;
+  }
+  .sec-head p{font-size:14px;color:var(--ink-3);margin-left:auto;max-width:420px}
+
+  /* ---------- 主卡片 ---------- */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{
+    background:var(--card);border:1px solid var(--line-soft);border-radius:var(--radius);
+    padding:24px 24px 20px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;position:relative;
+    transition:transform .22s ease, box-shadow .22s ease, border-color .22s;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent,var(--brand));opacity:.85;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(22,36,30,.05),0 18px 40px -20px rgba(22,36,30,.32);border-color:#CFDCCF}
+  .card-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .badge{
+    width:38px;height:38px;border-radius:11px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--accent,var(--brand));color:#fff;font-size:15px;font-weight:700;letter-spacing:.02em;
+  }
+  .card-top h3{font-size:17.5px;font-weight:750;letter-spacing:-.01em;line-height:1.3}
+  .card-top .en{display:block;font-size:11.5px;color:var(--ink-3);font-weight:500;letter-spacing:.06em;margin-top:2px}
+  .tagline{
+    font-size:14.5px;color:var(--ink-2);line-height:1.68;
+    padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed var(--line);
+  }
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+  .card li{
+    font-size:13.5px;color:var(--ink-2);line-height:1.6;padding-left:16px;position:relative;
+  }
+  .card li::before{
+    content:"";position:absolute;left:2px;top:.62em;width:5px;height:5px;border-radius:50%;
+    background:var(--accent,var(--brand));opacity:.5;
+  }
+  .card li b{color:var(--ink);font-weight:650}
+  .meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+  .pill{font-size:11.5px;padding:3px 9px;border-radius:999px;background:#F2F6F2;color:var(--ink-3);border:1px solid var(--line-soft)}
+  .pill.hot{background:var(--accent,var(--brand));color:#fff;border-color:transparent;font-weight:600}
+  .card.wide{grid-column:1/-1}
+  .card.wide ul{display:grid;grid-template-columns:1fr 1fr;gap:8px 26px}
+  .go{
+    display:inline-flex;align-items:center;gap:7px;margin-top:auto;
+    font-size:14px;font-weight:650;color:var(--accent,var(--brand));
+    padding-top:4px;
+  }
+  .go .arrow{transition:transform .2s}
+  .card:hover .go .arrow{transform:translateX(4px)}
+
+  /* ---------- 紧凑列表 ---------- */
+  .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .mini{
+    background:#fff;border:1px solid var(--line-soft);border-radius:12px;padding:16px 18px;
+    transition:.2s;display:flex;flex-direction:column;gap:4px;
+  }
+  .mini:hover{border-color:#CFDCCF;background:#FCFDFC;transform:translateY(-2px);box-shadow:0 10px 22px -16px rgba(22,36,30,.4)}
+  .mini .mh{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:680}
+  .mini .mh i{width:6px;height:6px;border-radius:2px;background:var(--brand-2);flex-shrink:0;font-style:normal}
+  .mini p{font-size:12.5px;color:var(--ink-3);line-height:1.55}
+  .mini .dom{font-size:11px;color:#9AA8A0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  /* ---------- 使用建议 ---------- */
+  .notes{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+  .panel{
+    background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);
+    padding:26px 28px;box-shadow:var(--shadow);
+  }
+  .panel h3{font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .panel h3::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--brand-2)}
+  .qa{padding:12px 0;border-bottom:1px dashed var(--line)}
+  .qa:last-child{border-bottom:none;padding-bottom:0}
+  .qa dt{font-size:14px;font-weight:650;margin-bottom:4px}
+  .qa dd{font-size:13.5px;color:var(--ink-3);line-height:1.65}
+  .qa dd code{
+    background:var(--brand-soft);color:var(--brand);padding:1px 6px;border-radius:5px;
+    font-size:12.5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  .tip{
+    margin-top:18px;padding:14px 16px;border-radius:11px;
+    background:var(--brand-soft);border:1px solid #D5E4D9;
+    font-size:13px;color:#2C5442;line-height:1.75;
+  }
+
+  /* ---------- 页脚 ---------- */
+  footer{margin-top:72px;border-top:1px solid var(--line);background:#EEF3EE}
+  .foot{display:flex;justify-content:space-between;gap:20px;padding:30px 0 40px;flex-wrap:wrap;align-items:center}
+  .foot p{font-size:13px;color:var(--ink-3)}
+  .foot .sig{font-size:13.5px;color:var(--ink-2)}
+  .foot .sig b{color:var(--brand)}
+
+  /* ---------- 动画 ---------- */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .grid{grid-template-columns:1fr}
+    .mini-grid{grid-template-columns:repeat(2,1fr)}
+    .notes{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .sec-head p{margin-left:0;max-width:none;width:100%}
+  }
+  @media (max-width:600px){
+    .wrap{padding:0 18px}
+    .hero{padding:44px 0 32px}
+    .mini-grid{grid-template-columns:1fr}
+    .stats{gap:24px}
+    .nav{display:none}
+    .card{padding:20px 18px 18px}
+  }
+  @media print{
+    body{background:#fff}
+    .topbar,.hero-actions,.go{display:none}
+    .card,.mini,.panel,.step{box-shadow:none;break-inside:avoid}
+    .card:hover{transform:none}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <div class="brand"><span class="dot"></span>Newsun 英语教学工具 <small>教师导航</small></div>
+    <nav class="nav">
+      <a href="#start">怎么开始</a>
+      <a href="#core">核心工具</a>
+      <a href="#more">更多工具</a>
+      <a href="#notes">使用说明</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">NEWSUN ENGLISH · TEACHER TOOLKIT</span>
+    <h1>把一节课要用的工具，<br />放在<em>一张页面</em>上。</h1>
+    <p class="lede">
+      这些都是我自己做的教学工具——备课时用来找思路，做听力时用来生成音频，课上用来管小组，
+      课后给学生留任务、看阅读、批作文。全部免费开放给同事使用，按下面的顺序点开就能上手。
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://main.newsunenglish.com/" target="_blank" rel="noopener">
+        进入工具主页 <span aria-hidden="true">→</span>
+      </a>
+      <a class="btn btn-ghost" href="#core">先看核心工具</a>
+      <a class="btn btn-ghost" href="https://ai-survey.newsunenglish.com/api-key/" target="_blank" rel="noopener">AI 入门：申请 API Key</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>20</b><span>个在线工具与站点</span></div>
+      <div class="stat"><b>6</b><span>类教学环节全覆盖</span></div>
+      <div class="stat"><b>0</b><span>安装，浏览器直接打开</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 怎么开始 -->
+  <section id="start" style="padding-top:0">
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">STEP 01</div>
+        <h4>先打开主页</h4>
+        <p>所有工具都在 <b>main.newsunenglish.com</b> 上，可以按需挑一个，不用一次学完。</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">STEP 02</div>
+        <h4>挑一个当下要用的</h4>
+        <p>明天要出听力、下周要批作文、下节课想换种上法——从眼下这一件具体的事进去，最快。</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">STEP 03</div>
+        <h4>需要 AI 的先配一把钥匙</h4>
+        <p>页面提示填写 API Key 时，照着《API Key 申请指南》做，五步之内能配好，不用写代码。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心工具 -->
+  <section id="core">
+    <div class="sec-head">
+      <div>
+        <div class="idx">01 / CORE</div>
+        <h2>核心工具</h2>
+      </div>
+      <p>九个页面，覆盖备课、听力、阅读、写作、学生学习与 AI 入门。建议先看带推荐标记的两个。</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- main -->
+      <a class="card reveal" style="--accent:var(--prep)" href="https://main.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">主</span>
+          <div>
+            <h3>工具主页</h3>
+            <span class="en">main.newsunenglish.com</span>
+          </div>
+        </div>
+        <p class="tagline">一张总入口页，二十个工具全部列在上面，随时按需取用。</p>
+        <ul>
+          <li><b>全部工具清单</b>：备课、听力、阅读、写作、课堂管理、教务数据一页看全</li>
+          <li><b>按用途分类</b>：每个工具都标了标签，扫一眼就知道合不合用</li>
+          <li><b>持续更新</b>：新做的工具都先挂在这里</li>
+        </ul>
+        <div class="meta"><span class="pill">所有学科老师</span><span class="pill">免登录</span></div>
+        <span class="go">打开主页 <span class="arrow">→</span></span>
+      </a>
+
+      <!-- eta -->
+      <a class="card reveal" style="--accent:var(--prep)" href="https://eta.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">备</span>
+          <div>
+            <h3>英语备课 · ETA</h3>
+            <span class="en">eta.newsunenglish.com</span>
+          </div>
+        </div>
+        <p class="tagline">把好想法带进下一节课。从一篇文章、一份教材，或一个教学目标开始。</p>
+        <ul>
+          <li><b>三种起手方式</b>：给文章、给教材、给目标，都能往下推</li>
+          <li><b>按班级组织</b>：新建一节课时选好自己带的班，教案和学情对得上</li>
+          <li><b>备课与课件同一条线</b>：想清楚环节，再落到要呈现的东西上</li>
+        </ul>
+        <div class="meta"><span class="pill">英语教师</span><span class="pill">需登录</span><span class="pill hot">推荐</span></div>
+        <span class="go">去备课 <span class="arrow">→</span></span>
+      </a>
+
+      <!-- tts -->
+      <a class="card reveal" style="--accent:var(--listen)" href="https://tts.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">听</span>
+          <div>
+            <h3>声场 · 语音工作台</h3>
+            <span class="en">tts.newsunenglish.com</span>
+          </div>
+        </div>
+        <p class="tagline">把一份文稿，变成清晰的听力音频。试卷听力自己也能做。</p>
+        <ul>
+          <li><b>整卷粘贴</b>：题号、对话、停顿交给工作台，AI 自动识别结构</li>
+          <li><b>一键拆分</b>：按空行、按行、按「Speaker: 内容」对白分段都行</li>
+          <li><b>分角色配音</b>：不同人物配不同音色，逐段生成、试听、重试</li>
+          <li><b>题目目录片段</b>：每个小题单独成段，方便课上逐题播放</li>
+        </ul>
+        <div class="meta"><span class="pill">英语教师</span><span class="pill">单元卷 / 月考 / 期中期末</span><span class="pill hot">推荐</span></div>
+        <span class="go">打开语音工作台 <span class="arrow">→</span></span>
+      </a>
+
+      <!-- writeascend -->
+      <a class="card reveal" style="--accent:var(--write)" href="https://writeascend.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">写</span>
+          <div>
+            <h3>WriteAscend · 英语写作</h3>
+            <span class="en">writeascend.newsunenglish.com</span>
+          </div>
+        </div>
+        <p class="tagline">每一份反馈，走向下一稿。作文批阅与习作互评都在这一个站里。</p>
+        <ul>
+          <li><b>作文批阅</b>：收取学生习作、逐篇给到可执行的反馈</li>
+          <li><b>习作互评</b>：给学生互看的建议路径，二稿看得见修改痕迹</li>
+          <li><b>批改档案</b>：累积成班级写作档案，讲评时拿得出依据</li>
+          <li><b>使用前先配模型</b>：按页面提示填好 Key 再批改</li>
+        </ul>
+        <div class="meta"><span class="pill">英语教师</span><span class="pill">需登录</span><span class="pill">写作课</span></div>
+        <span class="go">去打作文 <span class="arrow">→</span></span>
+      </a>
+
+      <!-- daily -->
+      <a class="card reveal" style="--accent:var(--study)" href="https://daily.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">学</span>
+          <div>
+            <h3>每日英语学习 · Daily</h3>
+            <span class="en">daily.newsunenglish.com</span>
+          </div>
+        </div>
+        <p class="tagline">英语，打开更大的世界。按「单元 · Day」排好的每日自主学习任务。</p>
+        <ul>
+          <li><b>教材同步</b>：八上 U3 的 Day 4 这样组织，和教学进度对齐</li>
+          <li><b>每天六件套</b>：短语、句子、阅读/新闻、听力、情景视频、趣味视频</li>
+          <li><b>分级标注</b>：基础 A2 / 进阶 B1，学生按自己的层次挑</li>
+          <li><b>学习记录</b>：学生登录后看老师布置的任务和已完成情况</li>
+        </ul>
+        <div class="meta"><span class="pill">学生用</span><span class="pill">预习 / 巩固 / 假期</span></div>
+        <span class="go">看看每日任务 <span class="arrow">→</span></span>
+      </a>
+
+      <!-- reading -->
+      <a class="card reveal" style="--accent:var(--read)" href="https://reading.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">读</span>
+          <div>
+            <h3>StoryPath · 分级阅读</h3>
+            <span class="en">reading.newsunenglish.com</span>
+          </div>
+        </div>
+        <p class="tagline">在不同难度与原版经典之间，找到自己的入口。</p>
+        <ul>
+          <li><b>分级书库</b>：从易到难逐级往上，也有原版经典可读</li>
+          <li><b>读故事、收集线索</b>：读完要给得出依据，不是划过去就算</li>
+          <li><b>学生 / 教职工双入口</b>：按入学年级、班级、姓名登录</li>
+          <li><b>游客可免费阅读</b>：没有账号也能先进去试读几篇</li>
+        </ul>
+        <div class="meta"><span class="pill">学生用</span><span class="pill">整本书阅读</span><span class="pill">课后拓展</span></div>
+        <span class="go">进入阅读世界 <span class="arrow">→</span></span>
+      </a>
+
+      <!-- lecture -->
+      <a class="card reveal" style="--accent:var(--ai)" href="https://lecture.newsunenglish.com/files/guide?view=1" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">创</span>
+          <div>
+            <h3>教学创作指南 · WorkBuddy</h3>
+            <span class="en">lecture.newsunenglish.com/files/guide</span>
+          </div>
+        </div>
+        <p class="tagline">从一项教学需要，到一份可用的成果。给「想用 AI 但不知怎么开口」的老师。</p>
+        <ul>
+          <li><b>六类产出</b>：课件、图片、音视频、网页互动、小程序、技能项目</li>
+          <li><b>十步工作流</b>：建任务 → 给材料 → 写清标准 → 查方向 → 定点改 → 保存验收</li>
+          <li><b>十八张提示词模板</b>：语篇解读、分层阅读、听力制作、课件分镜、错题诊断、学情分析…… 直接复制就能用</li>
+          <li><b>每张模板都带核查项</b>：写清了什么算可用、什么不能替你做</li>
+        </ul>
+        <div class="meta"><span class="pill">所有学科老师</span><span class="pill">免登录</span><span class="pill hot">强烈推荐</span></div>
+        <span class="go">打开创作指南 <span class="arrow">→</span></span>
+      </a>
+
+      <!-- ai-survey -->
+      <a class="card reveal" style="--accent:var(--ai)" href="https://ai-survey.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">查</span>
+          <div>
+            <h3>AI 教学调查 · 资源包</h3>
+            <span class="en">ai-survey.newsunenglish.com</span>
+          </div>
+        </div>
+        <p class="tagline">让 AI 走进真实的英语课堂。十二个问题，摸清自己的起点。</p>
+        <ul>
+          <li><b>12 题 / 4 维度</b>：认识 · 使用 · 能力 · 期待，没基础也能如实填</li>
+          <li><b>顺手带走资源包</b>：20 个 AI 工具、16 个教学场景，Word / PDF 可下载</li>
+          <li><b>先做问卷再看指南</b>：答案才能反映真实起点</li>
+        </ul>
+        <div class="meta"><span class="pill">所有学科老师</span><span class="pill">培训前置</span></div>
+        <span class="go">填写调查 <span class="arrow">→</span></span>
+      </a>
+
+      <!-- api-key -->
+      <a class="card wide reveal" style="--accent:var(--admin)" href="https://ai-survey.newsunenglish.com/api-key/#platform=deepseek" target="_blank" rel="noopener">
+        <div class="card-top">
+          <span class="badge">钥</span>
+          <div>
+            <h3>API Key 申请指南</h3>
+            <span class="en">ai-survey.newsunenglish.com/api-key</span>
+          </div>
+        </div>
+        <p class="tagline">给你的 AI 工具配一把钥匙。不用写代码，照着图示做。</p>
+        <ul>
+          <li><b>24 个常用平台</b>：DeepSeek、通义千问、豆包、智谱、Kimi、MiniMax、文心、混元、讯飞……</li>
+          <li><b>四类入口分开讲</b>：国内模型 / 海外模型 / 多模型平台 / 云端服务</li>
+          <li><b>五步操作示范</b>：注册 → 申请 → 复制 → 填进软件 → 核对是否可用</li>
+          <li><b>先搞清一个问题</b>：软件让你填 Key 时才需要申请，聊天会员不等于 API 余额</li>
+        </ul>
+        <div class="meta"><span class="pill">所有学科老师</span><span class="pill">免登录</span><span class="pill hot">先看这篇</span></div>
+        <span class="go">打开申请指南 <span class="arrow">→</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- 更多工具 -->
+  <section id="more">
+    <div class="sec-head">
+      <div>
+        <div class="idx">02 / MORE</div>
+        <h2>更多工具</h2>
+      </div>
+      <p>主页上还有这些，按需点开即可；不确定用途的，先在主页看一句介绍。</p>
+    </div>
+
+    <div class="mini-grid">
+      <a class="mini reveal" href="https://tw.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>课堂小组合作管理</div>
+        <p>小组座位、积分、榜单与制度，让合作学习的过程可视、可回顾。</p>
+        <span class="dom">tw.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://wen.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>问英语</div>
+        <p>结合教材语境与 AI 启发，帮学生真正理解并运用语法词汇的智能问答。</p>
+        <span class="dom">wen.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://vocab-system.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>Vocab System</div>
+        <p>支持 Excel 一键导入的词汇管理与训练系统，提高单词记忆效率。</p>
+        <span class="dom">vocab-system.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://kebiao.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>英语新课标 · 闪卡</div>
+        <p>用闪卡的形式学新课标，也可直接翻阅课标原文。</p>
+        <span class="dom">kebiao.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://teaching.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>初中教学常规查询</div>
+        <p>各学科教学常规与管理指引，一线教师随时可查。</p>
+        <span class="dom">teaching.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://ems.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>EMS 数据中心</div>
+        <p>数字化排考，自动管理学年、学期、考试场次与学科安排。</p>
+        <span class="dom">ems.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://promt.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>PromptHub</div>
+        <p>提示词共享平台，发现、分享和复用别人试过的提示词。</p>
+        <span class="dom">promt.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://video.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>映舟 MediaFerry</div>
+        <p>一个链接，完成视频与字幕的交付。</p>
+        <span class="dom">video.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://dealexcel.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>Excel 拆分与合并</div>
+        <p>在线处理 xlsx / xlsm / xls，按列拆分、多文件合并、去重与冲突报告。</p>
+        <span class="dom">dealexcel.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://htmlrunner.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>HTML 运行器 Pro</div>
+        <p>实时预览与导出，可调清晰度倍数与图片质量，快速生成页面截图。</p>
+        <span class="dom">htmlrunner.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://baoming.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>创意写作评审报名</div>
+        <p>英语创意写作活动的报名、信息收集与组织管理。</p>
+        <span class="dom">baoming.newsunenglish.com</span>
+      </a>
+      <a class="mini reveal" href="https://main.newsunenglish.com/" target="_blank" rel="noopener">
+        <div class="mh"><i></i>还想要别的？</div>
+        <p>没有现成工具的就自己做——主页底部有制作方法，也可以直接找我。</p>
+        <span class="dom">main.newsunenglish.com</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 使用说明 -->
+  <section id="notes">
+    <div class="sec-head">
+      <div>
+        <div class="idx">03 / NOTES</div>
+        <h2>使用说明</h2>
+      </div>
+      <p>第一次用会遇到的几个问题，都写在这里了。</p>
+    </div>
+
+    <div class="notes">
+      <div class="panel reveal">
+        <h3>常见问题</h3>
+        <dl>
+          <div class="qa">
+            <dt>要不要登录？</dt>
+            <dd>看具体站点。主页、API Key 指南、教学创作指南、调查问卷、分级阅读试读都<b>不用登录</b>；备课、作文批阅、学生学习记录这类要存个人数据的，需要账号。</dd>
+          </div>
+          <div class="qa">
+            <dt>账号和密码找谁要？</dt>
+            <dd>找 Newsun 开通。学生端的账号一般按 <code>入学年级 + 班级 + 姓名</code> 建，教师端单独开。</dd>
+          </div>
+          <div class="qa">
+            <dt>手机上能用吗？</dt>
+            <dd>能用。学生端、阅读、每日学习在手机上体验最好；做听力、批作文这类要整理文件的活，建议用<b>电脑浏览器</b>，屏幕大、不容易点错。</dd>
+          </div>
+          <div class="qa">
+            <dt>用哪个浏览器？</dt>
+            <dd>Chrome、Edge、Safari 都可以。若页面显示不全，先换一个浏览器或刷新一次，多半是缓存的问题。</dd>
+          </div>
+          <div class="qa">
+            <dt>要不要付费？</dt>
+            <dd>这些站点都是我自己做的，给同事用不收费。只有接入 AI 模型时，模型那边按调用量计费，费用很低，用多少算多少。</dd>
+          </div>
+          <div class="qa">
+            <dt>想加一个功能怎么办？</dt>
+            <dd>直接跟我说。教学里真正卡住的那个动作，往往就是下一个工具。</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="panel reveal">
+        <h3>今天就能用上的四件事</h3>
+        <dl>
+          <div class="qa">
+            <dt>一、明天那节课，先把环节理清</dt>
+            <dd>打开 ETA，从一篇文章、一份教材或一个教学目标起手，选好自己带的班。先想学生要做什么，再想怎么呈现。</dd>
+          </div>
+          <div class="qa">
+            <dt>二、下周的听力，自己出一份</dt>
+            <dd>把整卷文稿粘进声场，一键拆题、分角色配音，逐段试听确认。一节课的时间能出完整音频，不用再等别人做。</dd>
+          </div>
+          <div class="qa">
+            <dt>三、给学生留一次自主任务</dt>
+            <dd>在 Daily 里挑一个 Day，短语、句子、阅读、听力、视频一次给全，学生在手机上就能做，还能看到完成记录。</dd>
+          </div>
+          <div class="qa">
+            <dt>四、AI 给的东西，一定回到原文核</dt>
+            <dd>题目、听力稿、作文反馈，都要对一遍教材原文和学生实际作答。工具负责快，判断还在老师这里。</dd>
+          </div>
+        </dl>
+        <div class="tip">
+          真正卡住你的那个动作，往往就是下一个工具。<br />
+          想加功能、要账号、不知道怎么用，直接找 Newsun。
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p class="sig">由 <b>Newsun</b> 设计与维护 · 瑞安市新纪元实验学校 · 英语教学工具集</p>
+    <p>教师内部使用 · 页面更新于 2026 年 10 月</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(e){ e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+    els.forEach(function(e, i){
+      e.style.transitionDelay = (Math.min(i % 6, 5) * 55) + 'ms';
+      io.observe(e);
+    });
+  })();
+</script>
+</body>
+</html>
